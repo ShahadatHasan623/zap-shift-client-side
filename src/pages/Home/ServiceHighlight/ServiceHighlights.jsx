@@ -26,7 +26,7 @@ const highlights = [
 
 const ServiceHighlightsList = () => {
   return (
-    <section className="py-16 bg-base-100">
+    <section className="py-16 bg-base-100" data-aos="fade-up"  data-aos-anchor-placement="bottom-center">
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold text-primary mb-2">Why Choose Us</h2>
         <p className="text-gray-500 max-w-2xl mx-auto">
@@ -38,7 +38,7 @@ const ServiceHighlightsList = () => {
         {highlights.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row items-start bg-base-200 rounded-xl shadow-md overflow-hidden"
+            className="flex flex-col md:flex-row items-start bg-base-200 rounded-xl shadow-md overflow-hidden py-10"
           >
             {/* Image Box with Dotted Border */}
             <div className="md:w-40 w-full p-4 flex justify-center border-b md:border-b-0 md:border-r-2 border-dotted border-gray-400">
