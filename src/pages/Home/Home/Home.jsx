@@ -5,6 +5,7 @@ import ClientLogoSlider from '../ClientLogoSlider/ClientLogoSlider';
 import ServiceHighlights from '../ServiceHighlight/ServiceHighlights';
 import Merchant from '../Merchant/Merchant';
 import CustomerSay from '../CustomerSay/CustomerSay';
+import Frequently from '../Frequently/Frequently';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <ServiceHighlights></ServiceHighlights>
             <Merchant></Merchant>
             <CustomerSay></CustomerSay>
+            <Frequently></Frequently>
         </div>
     );
 };

@@ -107,7 +107,7 @@ const CustomerSay = () => {
           ))}
         </Slider>
 
-        {/* Arrows under slider */}
+       
         <div className="flex justify-center gap-6 mt-6">
           <button
             onClick={() => sliderRef.current.slickPrev()}
