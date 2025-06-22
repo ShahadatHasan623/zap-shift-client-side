@@ -1,14 +1,25 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../../hooks/useAuth";
+import GoogleLogin from "../soicalLogin/GoogleLogin";
+import { Link } from "react-router";
 
 const Register = () => {
+    const {createUser}=useAuth()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    const{email,password}=data;
+    createUser(email,password)
+    .then(result=>{
+        console.log(result.user)
+    })
+    .catch(error=>{
+        console.log(error)
+    })
   };
   return (
     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -41,12 +52,10 @@ const Register = () => {
             {
                 errors.password?.type==="minLength" && <p className="text-red-600">password must be 6 character</p>
             }
-
-            <div>
-              <a className="link link-hover">Forgot password?</a>
-            </div>
-            <button className="btn btn-neutral mt-4">Register</button>
+            <button className="btn btn-primary text-black mt-4">Register</button>
+            <p>Already have an account <Link className="btn p-0 btn-link" to="/login">Login</Link></p>
           </fieldset>
+          <GoogleLogin></GoogleLogin>
         </form>
       </div>
     </div>

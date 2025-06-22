@@ -1,11 +1,22 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import GoogleLogin from "../soicalLogin/GoogleLogin";
+import { Link } from "react-router";
+import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
+  const {singinUser}=useAuth()
   const { register, handleSubmit,formState:{errors} } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    const {email,password}=data
+    singinUser(email,password)
+    .then(result=>{
+        console.log(result.user)
+    })
+    .catch(error=>{
+        console.log(error)
+    })
   };
 
   return (
@@ -36,8 +47,10 @@ const Login = () => {
             <div>
               <a className="link link-hover">Forgot password?</a>
             </div>
-            <button className="btn btn-neutral mt-4">Login</button>
+            <button className="btn btn-primary text-black mt-4">Login</button>
+            <p>Don't have an acoount? <Link to="/register" className="btn btn-link p-0">register</Link> </p>
           </fieldset>
+          <GoogleLogin></GoogleLogin>
         </form>
       </div>
     </div>
