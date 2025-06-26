@@ -53,6 +53,7 @@ const CoverageMap = ({ serviceCenter }) => {
       </h2>
 
       {/* 🔍 Search Box */}
+      
       <div className="flex justify-center items-center gap-2 mb-4">
         <input
           type="text"
