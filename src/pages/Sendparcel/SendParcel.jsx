@@ -4,9 +4,11 @@ import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth"; // Adjust the path
 import "sweetalert2/dist/sweetalert2.min.css";
+import useAxioseSecure from "../../hooks/useAxioseSecure";
 
 const SendParcel = () => {
   const { user } = useAuth(); // get logged-in user
+  const axioseSecure = useAxioseSecure();
   const {
     register,
     handleSubmit,
@@ -103,16 +105,19 @@ const SendParcel = () => {
         const fullData = {
           ...data,
           cost,
-          email: user?.email || "anonymous",
+          created_by: user?.email || "anonymous",
           createdAt: new Date().toISOString(),
           payment_status: "unpaid",
           delivery_status: "not_collected",
           trackingId: generateTrackingId(),
         };
-
         // TODO: Send to backend
-        console.log("Saving to database:", fullData);
-        Swal.fire("Saved!", "Your parcel has been saved.", "success");
+        axioseSecure.post("/parcels", fullData).then((res) => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            Swal.fire("Saved!", "Your parcel has been saved.", "success");
+          }
+        });
         reset();
       }
     });

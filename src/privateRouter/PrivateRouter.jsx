@@ -9,10 +9,10 @@ const PrivateRouter = ({ children }) => {
   if (loading) {
     return <span className="loading loading-spinner loading-xl"></span>;
   }
-  if (!user && user.email) {
+  if (user && user.email) {
     return children;
   }
-  return <Navigate state={location.pathname} to="/login"></Navigate>;
+  return <Navigate state={location.path} to="/login"></Navigate>;
 };
 
 export default PrivateRouter;
