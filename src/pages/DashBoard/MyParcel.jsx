@@ -4,10 +4,12 @@ import useAxioseSecure from "../../hooks/useAxioseSecure";
 import { useQuery } from "@tanstack/react-query";
 import { FaEye, FaTrash, FaMoneyCheckAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const MyParcel = () => {
   const { user } = useAuth();
   const axiosSecure = useAxioseSecure();
+  const navigate =useNavigate()
   const { data: parcels = [],refetch } = useQuery({
     queryKey: ["parcels", user.email],
     queryFn: async () => {
@@ -17,6 +19,7 @@ const MyParcel = () => {
   });
   const handlePay = (id) => {
     console.log(id);
+    navigate(`/dashboard/payment/${id}`)
   };
   const handleView = (id) => {
     console.log("veiw details", id);
@@ -45,7 +48,7 @@ const MyParcel = () => {
             }
             refetch()
           })
-          .catch((error) => {
+          .catch(() => {
             Swal.fire({
               title: "Error!",
               text: "Something went wrong while deleting.",
