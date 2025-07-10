@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router";
 import ProFastLogo from "../pages/shared/Profastlogo/ProFastLogo";
+import { MdHome, MdLocalShipping, MdPayment, MdTrackChanges, MdPerson } from "react-icons/md";
 
 const DashboardLayout = () => {
   return (
@@ -44,12 +45,42 @@ const DashboardLayout = () => {
         ></label>
         <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           {/* Sidebar content here */}
-          <NavLink to='/'><ProFastLogo></ProFastLogo></NavLink>
+          <NavLink to="/">
+            <ProFastLogo></ProFastLogo>
+          </NavLink>
           <li>
-            <NavLink>Home</NavLink>
+            <NavLink to="/dashboard" className="flex items-center gap-2">
+              <MdHome size={20} /> Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to='/dashboard/myParcel'>My parcel</NavLink>
+            <NavLink
+              to="/dashboard/myParcel"
+              className="flex items-center gap-2"
+            >
+              <MdLocalShipping size={20} /> My Parcel
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/paymentHistory"
+              className="flex items-center gap-2"
+            >
+              <MdPayment size={20} /> Payment History
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/track" className="flex items-center gap-2">
+              <MdTrackChanges size={20} /> Track a Package
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/profile"
+              className="flex items-center gap-2"
+            >
+              <MdPerson size={20} /> Profile
+            </NavLink>
           </li>
         </ul>
       </div>
