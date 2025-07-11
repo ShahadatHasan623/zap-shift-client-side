@@ -2,15 +2,27 @@ import React from "react";
 import useAuth from "../../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import useAxios from "../../../hooks/useAxios";
 
 const GoogleLogin = () => {
   const { googleLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosInstance =useAxios()
 
   const handleGoogle = () => {
     googleLogin()
-      .then((result) => {
+      .then(async(result) => {
+        const user =result.user;
+         const userInfo={
+          email:user.email,
+          role:'user', //default role
+          created_at:new Date().toISOString(),
+          last_log_in:new Date().toISOString()
+        }
+        const res =await axiosInstance.post('/users',userInfo)
+        console.log('user update info',res.data)
+
         console.log(result.user);
         Swal.fire({
           position: "top-center",

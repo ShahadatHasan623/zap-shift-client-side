@@ -1,7 +1,15 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router";
 import ProFastLogo from "../pages/shared/Profastlogo/ProFastLogo";
-import { MdHome, MdLocalShipping, MdPayment, MdTrackChanges, MdPerson } from "react-icons/md";
+import {
+  MdHome,
+  MdLocalShipping,
+  MdPayment,
+  MdTrackChanges,
+  MdPerson,
+  MdGroups,
+  MdPending,
+} from "react-icons/md";
 
 const DashboardLayout = () => {
   return (
@@ -45,9 +53,8 @@ const DashboardLayout = () => {
         ></label>
         <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           {/* Sidebar content here */}
-          <NavLink to="/">
-            <ProFastLogo></ProFastLogo>
-          </NavLink>
+
+          <ProFastLogo></ProFastLogo>
           <li>
             <NavLink to="/dashboard" className="flex items-center gap-2">
               <MdHome size={20} /> Home
@@ -80,6 +87,24 @@ const DashboardLayout = () => {
               className="flex items-center gap-2"
             >
               <MdPerson size={20} /> Profile
+            </NavLink>
+          </li>
+
+          {/* ✅ New Links */}
+          <li>
+            <NavLink
+              to="/dashboard/activeRiders"
+              className="flex items-center gap-2"
+            >
+              <MdGroups size={20} /> Active Riders
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/pendingRiders"
+              className="flex items-center gap-2"
+            >
+              <MdPending size={20} /> Pending Riders
             </NavLink>
           </li>
         </ul>

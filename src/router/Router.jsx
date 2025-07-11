@@ -12,6 +12,9 @@ import MyParcel from "../pages/DashBoard/MyParcel";
 import Payment from "../pages/DashBoard/Payment/Payment";
 import PaymentHistory from "../pages/DashBoard/PaymentHistory/PaymentHistory";
 import TrackingParcel from "../pages/DashBoard/TrackingParcle/TrackingParcel";
+import BeARider from "../pages/DashBoard/BeARider/BeARider";
+import PendingRider from "../pages/DashBoard/PendingRider/PendingRider";
+import ActiveRider from "../pages/DashBoard/ActiveRider/ActiveRider";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +40,15 @@ export const router = createBrowserRouter([
         ),
         loader: () => fetch("../../public/warehouses.json"),
       },
+      {
+        path: "/BeARider",
+        element: (
+          <PrivateRouter>
+            <BeARider></BeARider>
+          </PrivateRouter>
+        ),
+        loader: () => fetch("../../public/warehouses.json"),
+      },
     ],
   },
   {
@@ -54,7 +66,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path:"/dashboard",
+    path: "/dashboard",
     element: (
       <PrivateRouter>
         <DashboardLayout></DashboardLayout>
@@ -63,20 +75,28 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "myParcel",
-        element:<MyParcel></MyParcel>,
+        element: <MyParcel></MyParcel>,
       },
       {
-        path:'payment/:parcelId',
-        Component:Payment
+        path: "payment/:parcelId",
+        Component: Payment,
       },
       {
-        path:'paymentHistory',
-        Component:PaymentHistory
+        path: "paymentHistory",
+        Component: PaymentHistory,
       },
       {
-        path:'track',
-        Component:TrackingParcel
-      }
+        path: "track",
+        Component: TrackingParcel,
+      },
+      {
+        path: "activeRiders",
+        Component:ActiveRider
+      },
+      {
+        path: "pendingRiders",
+        Component: PendingRider,
+      },
     ],
   },
 ]);
